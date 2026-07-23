@@ -2,17 +2,24 @@ const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 350,
-    height: 450,
-    frame: false,            // Removes the top title bar and close buttons
-    transparent: true,       // Makes the background window invisible
-    alwaysOnTop: true,       // Keeps it floating above other apps
+    width: 480,
+    height: 600,
+    frame: false,
+    transparent: true,
+    alwaysOnTop: true,
+    show: false, // Don't show until ready
     webPreferences: {
       nodeIntegration: true
     }
   });
 
   win.loadFile('index.html');
+
+  // Force macOS to reveal the transparent window once loaded
+  win.once('ready-to-show', () => {
+    win.center();
+    win.show();
+  });
 }
 
 app.whenReady().then(createWindow);

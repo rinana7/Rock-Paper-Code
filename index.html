@@ -1,26 +1,56 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href=""style.css>
+  <meta charset="UTF-8">
+  <title>Rock Paper Code</title>
+  <link rel="stylesheet" href="style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <div class="game-container">
-        <h1>Rock, Paper, Scissors</h1>
-        <div class="buttons">
-            <button onclick="playGame('Rock')">Rock</button>
-            <button onclick="playGame('Paper')">Paper</button>
-            <button onclick="playGame('Scissors')">Scissors</button>
-        </div>
-
-        <h2 id="result">Choose your move!</h2>
-        <p id="details"></p>
+  <div class="game-container">
+    <div id="char-selection">
+      <h1>Choose Your Fighter</h1>
+      <div class="avatar-select">
+        <button onclick="selectCharacter('girl')">
+          <img src="assets/girl.png" alt="Girl Player">
+          <span style="color: white">Girl</span>
+        </button>
+        <button onclick="selectCharacter('boy')">
+          <img src="assets/boy.png" alt="Boy Player">
+          <span style="color: white">Boy</span>
+        </button>
+      </div>
     </div>
-    <script src="script.js"></script>
 
+    <div id="game-screen" style="display: none;">
+      <div class="matchup-header">
+        <div class="player-box">
+          <img id="player-avatar" src="" alt="Player">
+          <p>You</p>
+          <div id="player-score" class="score-dots">⚪ ⚪</div>
+        </div>
+        <span class="vs">VS</span>
+        <div class="player-box">
+          <img src="assets/robot.png" alt="Robot" class="robot-avatar">
+          <p>Bot</p>
+          <div id="bot-score" class="score-dots">⚪ ⚪</div>
+        </div>
+      </div>
+
+      <div class="buttons" id="action-buttons">
+        <button onclick="playGame('Rock')">🪨 Rock</button>
+        <button onclick="playGame('Paper')">📄 Paper</button>
+        <button onclick="playGame('Scissors')">✂️ Scissors</button>
+      </div>
+
+      <h2 id="result">First to 2 wins!</h2>
+      <p id="details"></p>
+
+      <button id="reset-btn" style="display: none;" onclick="resetMatch()">Play Again 🔄</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

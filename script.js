@@ -1,26 +1,68 @@
-const choices = ['🪨 Rock', '📄 Paper', '✂️ Scissors'];
+let selectedPlayer = '';
+let playerScore = 0;
+let botScore = 0;
+const WINNING_SCORE = 2;
+
+function selectCharacter(gender) {
+  selectedPlayer = gender;
+  document.getElementById('player-avatar').src = `assets/${gender}.png`;
+  document.getElementById('char-selection').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'block';
+  resetMatch();
+}
+
+function updateScoreBoard() {
+  const playerDots = '⭐ '.repeat(playerScore) + '⚪ '.repeat(WINNING_SCORE - playerScore);
+  const botDots = '⭐ '.repeat(botScore) + '⚪ '.repeat(WINNING_SCORE - botScore);
+  
+  document.getElementById('player-score').innerText = playerDots.trim();
+  document.getElementById('bot-score').innerText = botDots.trim();
+}
 
 function playGame(playerChoice) {
-  // 1. Computer makes a random pick
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  const computerChoice = choices[randomIndex];
+  if (playerScore >= WINNING_SCORE || botScore >= WINNING_SCORE) return;
 
-  let result = "";
+  const choices = ['Rock', 'Paper', 'Scissors'];
+  const botChoice = choices[Math.floor(Math.random() * 3)];
 
-  // 2. Check winning logic
-  if (playerChoice === computerChoice) {
-    result = "It's a Tie! 🤝";
+  if (playerChoice === botChoice) {
+    document.getElementById('result').innerText = "It's a Tie! 🤝";
   } else if (
-    (playerChoice === '🪨 Rock' && computerChoice === '✂️ Scissors') ||
-    (playerChoice === '📄 Paper' && computerChoice === '🪨 Rock') ||
-    (playerChoice === '✂️ Scissors' && computerChoice === '📄 Paper')
+    (playerChoice === 'Rock' && botChoice === 'Scissors') ||
+    (playerChoice === 'Paper' && botChoice === 'Rock') ||
+    (playerChoice === 'Scissors' && botChoice === 'Paper')
   ) {
-    result = "You Win! 🎉";
+    playerScore++;
+    document.getElementById('result').innerText = "You win this round! 🎉";
   } else {
-    result = "Computer Wins! 🤖";
+    botScore++;
+    document.getElementById('result').innerText = "Bot wins this round! 🤖";
   }
 
-  // 3. Update the webpage with results
-  document.getElementById('result').innerText = result;
-  document.getElementById('details').innerText = `You picked ${playerChoice} | Computer picked ${computerChoice}`;
+  document.getElementById('details').innerText = `You: ${playerChoice} | Bot: ${botChoice}`;
+  updateScoreBoard();
+
+  // Check for match winner
+  if (playerScore === WINNING_SCORE) {
+    document.getElementById('result').innerText = "🏆 YOU WON THE MATCH! 🏆";
+    endMatch();
+  } else if (botScore === WINNING_SCORE) {
+    document.getElementById('result').innerText = "🤖 BOT WON THE MATCH! 🤖";
+    endMatch();
+  }
+}
+
+function endMatch() {
+  document.getElementById('action-buttons').style.display = 'none';
+  document.getElementById('reset-btn').style.display = 'inline-block';
+}
+
+function resetMatch() {
+  playerScore = 0;
+  botScore = 0;
+  updateScoreBoard();
+  document.getElementById('result').innerText = "First to 2 wins!";
+  document.getElementById('details').innerText = "";
+  document.getElementById('action-buttons').style.display = 'flex';
+  document.getElementById('reset-btn').style.display = 'none';
 }

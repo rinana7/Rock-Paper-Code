@@ -1,37 +1,172 @@
 body {
-  background-color: #0f172a;
-  color: #f8fafc;
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  user-select: none;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .game-container {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+  width: 400px;
   text-align: center;
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  -webkit-app-region: drag;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25), 0 20px 40px rgba(0, 0, 0, 0.6);
+  -webkit-app-region: drag; 
 }
 
-button {
+h1 {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.avatar-select {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.avatar-select button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1e293b;
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-select button img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+}
+
+.avatar-select button:hover {
+  transform: scale(1.05);
+  border-color: #60a5fa;
+  background: #334155;
+}
+
+.matchup-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.player-box img {
+  width: 72px;
+  height: 72px;
+}
+
+.player-box p {
+  margin: 4px 0 2px 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.score-dots {
+  font-size: 0.8rem;
+}
+
+.vs {
+  font-weight: 800;
   font-size: 1.2rem;
-  padding: 12px 20px;
-  margin: 8px;
+  color: #f59e0b;
+}
+
+.buttons {
+    
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.buttons button {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 8px;
   border: none;
-  border-radius: 8px;
-  background-color: #3b82f6;
+  border-radius: 10px;
+  background: #3b82f6;
   color: white;
   cursor: pointer;
   transition: transform 0.1s ease;
   -webkit-app-region: no-drag;
 }
 
-button:hover {
-  transform: scale(1.05);
-  background-color: #2563eb;
+.buttons button:hover {
+  transform: translateY(-2px);
+  background: #2563eb;
+}
+
+#result {
+  font-size: 1.1rem;
+  margin: 8px 0 4px 0;
+  color: #60a5fa;
+}
+
+#details {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #94a3b8;
+}
+
+#reset-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+#reset-btn:hover {
+  background: #16a34a;
+}
+
+button:active {
+  transform: scale(0.95) !important;
+}
+
+.avatar-select button:hover {
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
+}
+
+.vs {
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+p, #details, .score-dots {
+  font-size: 0.65rem;
 }
