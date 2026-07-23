@@ -15,6 +15,7 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -webkit-app-region: drag;
 }
 
 button {
@@ -27,6 +28,7 @@ button {
   color: white;
   cursor: pointer;
   transition: transform 0.1s ease;
+  -webkit-app-region: no-drag;
 }
 
 button:hover {
